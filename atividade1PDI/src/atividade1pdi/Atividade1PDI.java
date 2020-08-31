@@ -109,7 +109,7 @@ public class Atividade1PDI {
         imagem = criaMatriz(in);
         clara = clarearImagem(imagem);
         salvarImagem(clara, "clara.pgm");
-        //salvarImagem(imagem, "copia.pgm");
+        salvarImagem(imagem, "copia.pgm");
         
     }
     
