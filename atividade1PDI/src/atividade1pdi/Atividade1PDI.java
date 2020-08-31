@@ -5,6 +5,8 @@
  */
 package atividade1pdi;
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
@@ -44,7 +46,7 @@ public class Atividade1PDI {
             }
             
         }
-        System.out.println("Colunas: "+coluna+" Linhas: "+linha);
+        //System.out.println("Colunas: "+coluna+" Linhas: "+linha);
         return Matriz;
     }
     public static void salvarImagem(int[][] imagem, String nameFile){
@@ -71,11 +73,43 @@ public class Atividade1PDI {
         fw.flush();
         } catch (IOException e) {}
     }
-    public static void main(String[] args) {
+    
+    public static int[][] clarearImagem(int[][] imagem){
         
+        int coluna = imagem[0].length;
+        int linha = imagem.length;
+        int[][] imagemClara;
         
+        imagemClara = new int[linha][coluna];
+        System.out.println("Colunas: "+coluna+" Linhas: "+linha);
+        for(int i = 0; i<linha; i++)
+        {
+            for(int j = 0; j < coluna; j++)
+            {
+                if((imagem[i][j] + 15) > lim)
+                {
+                    imagemClara[i][j] = lim;
+                }
+                else{
+                    imagemClara[i][j] = imagem[i][j] + 15;
+                }
+                
+            }
+        }
+        return imagemClara;
+    }
+    
+    public static void main(String[] args) throws FileNotFoundException {
         
+         Scanner in = new Scanner(new FileReader("imagem.pgm"));
         
+        int[][] imagem;
+        int[][] clara;
+        
+        imagem = criaMatriz(in);
+        clara = clarearImagem(imagem);
+        salvarImagem(clara, "clara.pgm");
+        //salvarImagem(imagem, "copia.pgm");
         
     }
     
